@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مفاتيح التنوع الحيوي في فلسطين</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f1f8ec;--card:#fff;--tx:#1c2b1a;--g:#2e7d32;--g2:#8bc34a;--r:#c62828;--y:#f9a825;--bd:#cfe3c4;--ok:#d9f2d3;--no:#fde0dd}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14201a;--card:#1f2e25;--tx:#eef6ea;--g:#66bb6a;--g2:#9ccc65;--r:#ef5350;--bd:#33503c;--ok:#1f4a2a;--no:#5a2724}}
+:root[data-theme="dark"]{--bg:#14201a;--card:#1f2e25;--tx:#eef6ea;--g:#66bb6a;--g2:#9ccc65;--r:#ef5350;--bd:#33503c;--ok:#1f4a2a;--no:#5a2724}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic",Arial,sans-serif;font-size:18px;line-height:1.7}
+.wrap{max-width:760px;margin:auto;padding:12px}
+header{background:linear-gradient(90deg,#000 0 8%,#fff 8% 8%,var(--g) 8%);background:var(--g);color:#fff;border-radius:16px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:6px solid var(--r)}
+header h1{font-size:1.1rem;margin:0}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 18px;background:var(--g);color:#fff}
+button:hover{filter:brightness(1.1)}
+#shr{background:var(--y);color:#000;padding:6px 12px;margin-inline-start:6px}
+#mute{background:transparent;font-size:1.4rem;padding:2px 8px}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:18px;padding:18px;margin-top:14px}
+#keys{display:flex;gap:6px;justify-content:center;margin-top:14px}
+.k{flex:1;text-align:center;border-radius:12px;padding:6px 2px;background:var(--card);border:2px dashed var(--bd);font-size:.8rem;opacity:.55}
+.k b{display:block;font-size:1.6rem;filter:grayscale(1)}
+.k.on{opacity:1;border-style:solid;border-color:var(--y)}
+.k.on b{filter:none;animation:wob 1.2s infinite}
+.k.done{opacity:1;background:var(--ok);border-color:var(--g)}
+.k.done b{filter:none}
+@keyframes wob{50%{transform:rotate(-15deg) scale(1.15)}}
+input{font:inherit;width:100%;padding:10px;margin:6px 0 12px;border:2px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+.opt{display:block;width:100%;text-align:right;margin:8px 0;background:var(--bg);color:var(--tx);border:2px solid var(--bd)}
+.opt:hover{border-color:var(--g)}
+.opt.c{background:var(--ok);border-color:var(--g)}
+.opt.w{background:var(--no);border-color:var(--r)}
+.fb{margin-top:10px;padding:12px;border-radius:12px}
+.fb.c{background:var(--ok)}.fb.w{background:var(--no)}
+.pr{height:10px;background:var(--bd);border-radius:9px;overflow:hidden}
+.pr i{display:block;height:100%;background:var(--g2);transition:width .4s}
+.big{font-size:4rem;text-align:center;animation:pop .8s}
+@keyframes pop{0%{transform:scale(.2) rotate(-90deg)}70%{transform:scale(1.3)}100%{transform:none}}
+.cf{position:fixed;top:-30px;font-size:1.6rem;pointer-events:none;animation:fall linear forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+.cert{border:8px double var(--g);border-radius:16px;padding:22px;text-align:center;background:var(--card)}
+.cert h2{color:var(--g);font-size:2rem;margin:4px 0}
+.cert .nm{font-size:1.7rem;color:var(--r);border-bottom:2px dotted var(--g);display:inline-block;padding:0 20px}
+.st{font-size:2.2rem;letter-spacing:6px}
+footer{font-size:.8rem;text-align:center;margin:16px 0;opacity:.85}
+@media print{body{background:#fff}header,#keys,.noprint,footer .x{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>🔑 مفاتيح التنوع الحيوي في فلسطين</h1><span><button id="shr" title="مشاركة" onclick="share()">🔗 مشاركة</button><button id="mute" title="الصوت" onclick="toggleMute()">🔊</button></span></header>
+<div id="sh" class="card noprint" style="display:none"><b>شارك ورقة العمل مع الطلاب:</b><input id="lk" readonly onclick="this.select()"><button onclick="cp()">📋 نسخ الرابط</button> <a id="wa" target="_blank" rel="noopener"><button style="background:#25d366">واتساب</button></a> <button onclick="nat()">📤 مشاركة عبر الجهاز</button><span id="ms" style="margin-inline-start:8px"></span></div>
+<div id="keys"></div>
+<div id="main"></div>
+<footer>العلوم – الصف الرابع الأساسي – الدرس الأول: التنوّع الحيوي<br>مديرية التربية والتعليم – بيرزيت<br>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ar" target="_blank" rel="noopener" style="color:inherit">رخصة المشاع الإبداعي CC BY-NC-SA 4.0</a></footer>
+</div>
+<script>
+const D='٠١٢٣٤٥٦٧٨٩',ar=n=>String(n).replace(/\d/g,d=>D[d]);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $=id=>document.getElementById(id);
+/* ---- الصوت ---- */
+let AC,mute=false;
+function tone(f,t,d,ty='sine',v=.15){if(mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;o.connect(g);g.connect(AC.destination);const s=AC.currentTime+t;g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.start(s);o.stop(s+d)}catch(e){}}
+const snd={ok(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.09,.25))},no(){tone(220,0,.25,'sawtooth',.08);tone(160,.2,.4,'sawtooth',.08)},
+key(){[392,523,659,784,1047,1319].forEach((f,i)=>tone(f,i*.12,.45,'triangle'))},
+win(){[523,523,659,784,659,784,1047,1047,1319].forEach((f,i)=>tone(f,i*.17,.35,'triangle'))}};
+function toggleMute(){mute=!mute;$('mute').textContent=mute?'🔇':'🔊'}
+function confetti(n){const e=['⭐','🎉','🌸','✨','🌟','🌿'];for(let i=0;i<n;i++){const s=document.createElement('span');s.className='cf';s.textContent=e[i%e.length];s.style.left=Math.random()*100+'vw';s.style.animationDuration=(2+Math.random()*2)+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),4200)}}
+/* ---- الأسئلة ---- */
+const stages=[
+{n:'مفتاح البيئة',ic:'🌍',t:'بيئتي فلسطين'},
+{n:'مفتاح الكائنات',ic:'🦌',t:'نباتات وحيوانات متنوعة'},
+{n:'مفتاح الأهمية',ic:'🌿',t:'أهمية التنوع الحيوي'},
+{n:'مفتاح الأرقام',ic:'🔢',t:'الرياضيات في محميتي'},
+{n:'مفتاح المواطنة',ic:'🇵🇸',t:'أنا مواطن صالح'}];
+function mathQs(){
+ const r=(a,b)=>a+Math.floor(Math.random()*(b-a));
+ const f=n=>ar(String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'٬'));
+ const mk=(q,ans,e)=>{const s=new Set([ans]);const d=[1000,10000,100000,-1000,-10000,-100000,1000000,-1000000];while(s.size<4){const v=ans+d[r(0,8)];if(v>0)s.add(v)}
+  return{k:3,q,o:[...s].map(v=>({t:f(v),c:v===ans})),e}};
+ let a=r(100000,900000),b=r(100000,900000);
+ let x=r(1000000,5000000),y=r(100000,900000);
+ let p=r(1000000,3000000),q=r(500000,2000000),w=r(100000,900000);
+ return[
+ mk(`في حملة وطنية للتشجير زُرعت ${f(a)} شتلة في الضفة الغربية، و${f(b)} شتلة في بقية أنحاء الوطن. كم شتلة زُرعت معًا؟`,a+b,`${f(a)} + ${f(b)} = ${f(a+b)} (نكتب الأرقام تحت بعضها: آحاد تحت آحاد، ثم نجمع من اليمين: الآحاد، العشرات، المئات، الآلاف، عشرات الآلاف، مئات الآلاف)`),
+ mk(`قدّر الكشافة وجود ${f(x)} زهرة برية في الربيع، وقُطف منها ${f(y)} زهرة. كم زهرة بقيت؟`,x-y,`${f(x)} − ${f(y)} = ${f(x-y)} (نطرح من اليمين إلى اليسار، ونستلف من المنزلة التالية عند الحاجة)`),
+ mk(`في المتنزّهات ${f(p)} شجرة زيتون و${f(q)} شجرة لوز، قُطعت منها ${f(w)} شجرة. كم شجرة بقيت؟`,p+q-w,`نجمع أولًا: ${f(p)} + ${f(q)} = ${f(p+q)}، ثم نطرح: ${f(p+q)} − ${f(w)} = ${f(p+q-w)}`)]}
+const T=(t,c)=>({t,c:!!c});
+function build(){return[
+{k:0,q:'ما المقصود بالبيئة؟',o:[T('كل ما يحيط بنا من كائنات حية وأشياء غير حية',1),T('البيت الذي أسكن فيه فقط'),T('الحيوانات فقط'),T('الشارع والسيارات فقط')],e:'البيئة هي كل ما يحيط بنا: نباتات وحيوانات وإنسان، والماء والهواء والتربة والشمس.'},
+{k:0,q:'أيّ الآتي من عناصر البيئة غير الحية؟',o:[T('الماء والتربة',1),T('شقائق النعمان'),T('البومة'),T('الغزال')],e:'الماء والتربة والهواء والشمس عناصر غير حية، أمّا النباتات والحيوانات فكائنات حية.'},
+{k:0,q:'ما المقصود بالتنوّع الحيوي؟',o:[T('اختلاف الكائنات الحية وكثرة أنواعها في البيئة',1),T('وجود نوع واحد فقط من النباتات'),T('كثرة المباني في المدينة'),T('تنوّع الألعاب في الحديقة')],e:'التنوّع الحيوي هو اختلاف الكائنات الحية وتعدد أنواعها: نباتات وحيوانات وطيور وغيرها. والاختلاف بين النباتات مثال عليه.'},
+{k:0,q:'لماذا نقول إن بيئة فلسطين غنية بالتنوّع الحيوي؟',o:[T('لأن فيها أنواعًا كثيرة ومختلفة من النباتات والحيوانات',1),T('لأن فيها نوعًا واحدًا من الأزهار'),T('لأن فيها حيوانات فقط'),T('لأن فيها صحراء فقط')],e:`في فلسطين نحو ${ar(51000)} نوع من الكائنات الحية، منها سوسنة فقّوعة (نبتتنا الوطنية) والغزال والبومة.`},
+{k:1,q:'أيّ الكائنات الآتية طائر بري؟',o:[T('البومة',1),T('الغزال'),T('السلحفاة'),T('الخلد')],e:'البومة طائر، أمّا الغزال والخلد فحيوانات ثديية والسلحفاة زاحف.'},
+{k:1,q:'أيّ الآتية من الأزهار البرية في فلسطين؟',o:[T('الأقحوان وشقائق النعمان',1),T('الأرنب والغزال'),T('البومة والحمامة'),T('السمكة والضفدع')],e:'الأقحوان وشقائق النعمان نباتات برية مزهرة، والباقي حيوانات.'},
+{k:1,q:'في البركة نرى الضفدع والأسماك. أين تعيش هذه الكائنات؟',o:[T('في بيئة مائية',1),T('في الصحراء فقط'),T('فوق الأشجار'),T('تحت الصخور فقط')],e:'الأسماك والضفادع تعيش في الماء أو بالقرب منه، فهي من الكائنات المائية.'},
+{k:2,q:'ترعى الأغنام الأعشاب ويصطاد الطائر السمك. ما فائدة التنوّع الحيوي هنا؟',o:[T('يوفّر الغذاء للكائنات',1),T('يزيد الضجيج'),T('يمنع النمو'),T('لا فائدة منه')],e:'تنوّع الكائنات يوفّر الغذاء لبعضها ويحافظ على توازن البيئة.'},
+{k:2,q:'المريمية والزعتر والإكليل نباتات نستفيد منها في:',o:[T('الغذاء والدواء',1),T('بناء الجسور'),T('صناعة الزجاج'),T('تعبيد الطرق')],e:'هذه أعشاب عطرية نأكلها ونستعملها في العلاج الشعبي.'},
+{k:2,q:'القطن وخشب الزيتون والجلود تدخل في:',o:[T('الصناعات والحرف اليدوية',1),T('الألعاب الإلكترونية'),T('صناعة السيارات'),T('لا تُستعمل')],e:'نصنع منها الملابس والتحف الخشبية والحقائب، فالتنوّع الحيوي مصدر لرزق كثير من الناس.'},
+{k:1,q:'الأرنب والغزال والخلد والسلحفاة كائنات تعيش في الطبيعة. نسمّيها:',o:[T('حيوانات برية',1),T('نباتات برية'),T('حيوانات أليفة فقط'),T('أدوات منزلية')],e:'الكائنات التي تعيش حرّة في الطبيعة وتلتقط الأطفال صورها في الرحلات تسمى حيوانات برية.'},
+{k:1,q:'أيّ الحيوانات الآتية يحفر بيته تحت التربة؟',o:[T('الخلد',1),T('الغزال'),T('البلشون'),T('الحمامة')],e:'الخلد حيوان صغير يحفر أنفاقًا تحت التربة ويعيش فيها.'},
+{k:1,q:'الأقحوان والخرفيش والخطمية والبقلة نباتات نراها في بلادنا. اختلافها في الشكل واللون يدل على:',o:[T('التنوّع الحيوي',1),T('قلّة الأنواع'),T('وجود نوع واحد'),T('أنها كائنات غير حية')],e:'اختلاف النباتات في الشكل واللون والحجم مظهر من مظاهر التنوّع الحيوي.'},
+{k:2,q:'نصنع الصابون النابلسي المشهور من زيت الزيتون. ماذا يدل ذلك؟',o:[T('أن النباتات في بلادنا مصدر لصناعات وحرف وطنية',1),T('أن الزيتون لا فائدة منه'),T('أن الصابون يُصنع من الحجارة'),T('أن الزيتون حيوان')],e:'شجرة الزيتون من نباتات فلسطين، ومنها زيت الزيتون والصابون النابلسي وخشب الزيتون، وهي مصدر رزق لكثير من العائلات.'},
+{k:2,q:'ينتقل النحل بين الأزهار في الربيع ويعطينا العسل. فائدة التنوّع الحيوي هنا:',o:[T('تنتج الأزهار الثمار والبذور ونحصل على العسل',1),T('تموت الأزهار'),T('يقلّ الغذاء'),T('تختفي الحشرات')],e:'النحل ينقل حبوب اللقاح بين الأزهار فتُنتج الثمار والبذور، ونحصل على العسل. فكل كائن في البيئة له دور.'},
+{k:2,q:'لماذا يخرج الناس إلى الحدائق والمتنزهات الخضراء في بلادنا؟',o:[T('للاستمتاع بالجمال والهواء النقي والترفيه',1),T('لأنها بلا نباتات'),T('لقطع الأشجار'),T('لرمي النفايات')],e:'النباتات المتنوعة تجمّل المكان وتنقّي الهواء وتمنحنا مكانًا للراحة واللعب.'},
+...mathQs(),
+{k:4,q:'وجدت زهرة برية جميلة في الطريق. ماذا أفعل؟',o:[T('أتركها وأصوّرها وأحافظ عليها',1),T('أقطفها كلها'),T('أدوسها'),T('أقتلعها وأرميها')],e:'المواطن الصالح يحافظ على النباتات البرية لتبقى لنا ولأجيالنا.'},
+{k:4,q:'كيف يؤثّر جدار الفصل والمستعمرات الاستيطانية في التنوّع الحيوي؟',o:[T('يأخذون الأرض ويمنعون الحيوانات من الوصول إلى بيوتها وطعامها',1),T('يزيدون أعداد الحيوانات'),T('يحسّنون البيئة'),T('لا يؤثّرون إطلاقًا')],e:'الجدار والمستعمرات يأخذون أرضنا ويقطّعونها، فلا تجد الحيوانات بيوتها وطعامها وتقلّ النباتات والحيوانات.'},
+{k:4,q:'أيّ تصرّف يدل على حبّي لوطني وبيئتي؟',o:[T('أزرع شتلة وأحافظ على نظافة المكان',1),T('أرمي النفايات في الحقل'),T('أصطاد الطيور للتسلية'),T('أحرق الأعشاب')],e:'حماية البيئة جزء من الانتماء للوطن، وكل شتلة نزرعها هدية لفلسطين.'}]}
+/* ---- المشاركة ---- */
+const LINK='https://claude.ai/artifact/86sj2gmrb5ggnLjEVbdcrY',TXT='ورقة عمل تفاعلية: مفاتيح التنوّع الحيوي في فلسطين – الصف الرابع';
+function share(){const p=$('sh');p.style.display=p.style.display=='none'?'block':'none';$('lk').value=LINK;$('wa').href='https://wa.me/?text='+encodeURIComponent(TXT+'\n'+LINK)}
+function cp(){const i=$('lk');i.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}try{navigator.clipboard&&navigator.clipboard.writeText(LINK);ok=true}catch(e){}$('ms').textContent=ok?'✅ تم نسخ الرابط':'حدّد الرابط وانسخه يدويًا'}
+function nat(){if(navigator.share){navigator.share({title:TXT,url:LINK}).catch(()=>{})}else cp()}
+/* ---- الحالة ---- */
+let S={name:'',school:'',qs:[],i:0,st:0,score:0,sc:[0,0,0,0,0]};
+function keysBar(){$('keys').innerHTML=stages.map((s,i)=>`<div class="k ${i<S.st?'done':i==S.st?'on':''}"><b>${i<S.st?'🗝️':'🔑'}</b>${s.n}</div>`).join('')}
+function start(){S={name:'',school:'',qs:build(),i:0,st:0,score:0,sc:[0,0,0,0,0]};keysBar();
+ $('main').innerHTML=`<div class="card"><div class="big">🌸</div><h2 style="text-align:center">أهلًا بك يا بطل الطبيعة!</h2>
+ <p>في فلسطين آلاف الأنواع من النباتات والحيوانات. اجمع <b>${ar(5)} مفاتيح</b>، وكل مفتاح يفتح لك مرحلة جديدة، وفي النهاية تحصل على <b>شهادتك</b>.</p>
+<div style="background:var(--ok);border-radius:12px;padding:10px 14px;margin:10px 0"><b>🎯 أهداف الورقة:</b><ul style="margin:6px 0;padding-inline-start:22px"><li>أتعرّف مفهوم التنوّع الحيوي.</li><li>أتعرّف أهمية التنوّع الحيوي في حياتنا.</li></ul></div>
+ <label>اسم الطالب/ة:</label><input id="nm" maxlength="40" placeholder="اكتب اسمك هنا">
+ <label>اسم المدرسة:</label><input id="sc" maxlength="50" placeholder="اكتب اسم مدرستك هنا">
+ <button onclick="go()">ابدأ الرحلة 🚀</button></div>`}
+function go(){const n=$('nm').value.trim(),s=$('sc').value.trim();if(!n||!s){$('nm').style.borderColor=n?'':'#c62828';$('sc').style.borderColor=s?'':'#c62828';snd.no();return}
+ S.name=n;S.school=s;snd.key();next()}
+function stageQs(){return S.qs.filter(q=>q.k===S.st)}
+function next(){const q=stageQs();if(S.i>=q.length){return unlock()}showQ()}
+function showQ(){const qs=stageQs(),q=qs[S.i];q.sh=q.o.map(x=>x).sort(()=>Math.random()-.5);
+ $('main').innerHTML=`<div class="card"><div class="pr"><i style="width:${S.i/qs.length*100}%"></i></div>
+ <p style="color:var(--g);font-weight:bold;margin:8px 0">${stages[S.st].ic} ${stages[S.st].t} – السؤال ${ar(S.i+1)} من ${ar(qs.length)}</p>
+ <h3 style="margin:6px 0 12px">${q.q}</h3>
+ ${q.sh.map((o,i)=>`<button class="opt" onclick="ans(${i})">${o.t}</button>`).join('')}<div id="fb"></div></div>`}
+function ans(i){const q=stageQs()[S.i],o=q.sh[i],bs=[...document.querySelectorAll('.opt')];
+ bs.forEach((b,j)=>{b.disabled=true;if(q.sh[j].c)b.classList.add('c')});
+ let msg;
+ if(o.c){S.score++;S.sc[S.st]++;snd.ok();confetti(18);msg=`<div class="fb c"><b>🌟 أحسنت! إجابة صحيحة!</b><br>${q.e}</div>`}
+ else{bs[i].classList.add('w');snd.no();msg=`<div class="fb w"><b>😊 لا بأس، حاول من جديد في المرة القادمة!</b><br>الإجابة الصحيحة: <b>${q.sh.find(x=>x.c).t}</b><br>${q.e}</div>`}
+ $('fb').innerHTML=msg+`<p><button onclick="S.i++;next()">التالي ◀</button></p>`}
+function unlock(){const s=stages[S.st],nq=stageQs().length;snd.key();confetti(60);S.st++;S.i=0;keysBar();
+ const last=S.st>=5;
+ $('main').innerHTML=`<div class="card" style="text-align:center"><div class="big">🗝️</div><h2>مبروك! حصلت على ${s.n}</h2>
+ <p>نتيجتك في هذه المرحلة: <b>${ar(S.sc[S.st-1])} من ${ar(nq)}</b> ${'⭐'.repeat(S.sc[S.st-1])||'💪'}</p>
+ <button onclick="${last?'cert()':'next()'}">${last?'اعرض شهادتي 🏆':'افتح المرحلة التالية ◀'}</button></div>`}
+function cert(){snd.win();confetti(100);const tot=S.qs.length,p=Math.round(S.score/tot*100),stars=p>=90?3:p>=70?2:1;
+ const msg=p>=90?'ممتاز! أنت حارس أمين لبيئة فلسطين':p>=70?'جيد جدًا! واصل رحلتك':'جهد جيد، أعد المحاولة لتنال المزيد';
+ const d=new Date();$('keys').innerHTML='';
+ $('main').innerHTML=`<div class="cert" style="margin-top:14px"><div>🇵🇸 دولة فلسطين<br>وزارة التربية والتعليم – مديرية التربية والتعليم بيرزيت</div>
+ <h2>🏆 شهادة تقدير 🏆</h2><div class="st">${'⭐'.repeat(stars)}</div>
+ <p>تشهد معلمة العلوم بأن الطالب/ة</p><div class="nm">${esc(S.name)}</div>
+ <p>من مدرسة <b>${esc(S.school)}</b><br>أنهى/أنهت بنجاح رحلة المفاتيح الخمسة في درس «التنوّع الحيوي» للصف الرابع الأساسي</p>
+ <p style="font-size:1.4rem">العلامة: <b style="color:var(--r)">${ar(S.score)} من ${ar(tot)}</b> (${ar(p)}٪)</p>
+ <p>${msg}</p><p style="font-size:.85rem">التاريخ: ${ar(d.getDate())}/${ar(d.getMonth()+1)}/${ar(d.getFullYear())}</p>
+ <p style="font-size:.75rem">رخصة المشاع الإبداعي CC BY-NC-SA 4.0</p></div>
+ <p class="noprint" style="text-align:center"><button onclick="print()">🖨️ طباعة الشهادة</button> <button onclick="start()">🔄 ابدأ من جديد</button></p>`}
+start();
+</script>
+</body>
+</html>
